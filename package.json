@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
+    "test": "mocha -w"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,13 @@
   "bugs": {
     "url": "https://gitlab.com/j97b/bbl/issues"
   },
-  "homepage": "https://gitlab.com/j97b/bbl#readme"
+  "homepage": "https://gitlab.com/j97b/bbl#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.0",
+    "mocha": "^8.2.0",
+    "nodemon": "^2.0.6"
+  }
 }
