@@ -1,0 +1,19 @@
+{
+  "name": "boulder-bucket-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/j97b/bbl.git"
+  },
+  "author": "James Barron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/j97b/bbl/issues"
+  },
+  "homepage": "https://gitlab.com/j97b/bbl#readme"
+}
