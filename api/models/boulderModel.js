@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+const arrayLength = (val) => {
+    return val.length === 2 || val.length === 0;
+}
+
 const boulderModel = new Schema({
     name: {
         type: String,
@@ -12,19 +16,25 @@ const boulderModel = new Schema({
         required: true
     },
     coordinates: {
-        type: [Number]
+        type: [Number],
+        validate: [arrayLength, 'Must be a pair of coordinates']
     },
     grade: {
         type: Number,
-        required: true
+        get: v => Math.round(v),
+        set: v => Math.round(v),
+        alias: 'i',
+        required: true,
+        min: 0,
+        max: 15
     },
     completed: {
         type: Boolean,
-        default: false,
-        required: true
+        default: false
     },
     dateCompleted: {
-        type: Date
+        type: Date,
+        required: (boulder) => { return boulder.completed }
     },
     userId: {
         type: String,

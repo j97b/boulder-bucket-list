@@ -27,9 +27,14 @@ const boulderController = (Boulder) => {
 
     const post = (req, res) => {
         const boulder = new Boulder(req.body);
-        boulder.save();
-        res.status(201);
-        return res.json(boulder);
+        boulder.save((err) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res.status(201);
+                return res.json(boulder)
+            }
+        });
     };
     
     const update = (req, res) => {
