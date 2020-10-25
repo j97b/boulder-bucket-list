@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-const boulderRoutes = require('./router/boulderRouter');
+const Boulder = require('./models/boulderModel');
+const boulderRouter = require('./router/boulderRouter')(Boulder);
 
 const app = express();
 const db = mongoose.connect('mongodb://18.130.244.7/boulderBucketList', {
@@ -13,7 +14,7 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-app.use('/boulders', boulderRoutes);
+app.use('/boulders', boulderRouter);
 // app.use('/notes', noteRoutes);
 
 app.listen(port, () => {

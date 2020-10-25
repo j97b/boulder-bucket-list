@@ -1,12 +1,32 @@
-const router = require('express').Router();
+const { response } = require('express');
+const express = require('express');
 
-const routes = require('./boulderRoutes');
+const boulderController = require('../controllers/boulderController');
+const boulderMiddleware = require('../middleware/boulderMiddleware');
 
-router.get('/get/:userId', routes.getAll);
-router.get('/getOne/:boulderId', routes.getOne);
-router.post('/create', routes.create);
-router.delete('/deleteAll', routes.deleteAll);
-router.delete('/deleteOne', routes.deleteOne);
-router.patch('/update', routes.update);
+const routes = (Boulder) => {
+    const router = express.Router();
+    const controller = boulderController(Boulder);
+    const middleware = boulderMiddleware(Boulder);
 
-module.exports = router;
+    router.route('/')
+        .get(controller.getAll)
+        .post(controller.post);
+
+    router.use('/userId/:userId', middleware.findBouldersByUserId);
+    
+    router.route('/userId/:userId')
+        .get(controller.getAllByUserId)
+        .delete(controller.deleteAllByUserId);
+
+    router.use('/boulderId/:boulderId', middleware.findBoulderById);
+
+    router.route('/boulderId/:boulderId')
+        .get(controller.getOne)
+        .delete(controller.deleteOne)
+        .patch(controller.update);
+    
+    return router;
+}
+
+module.exports = routes;
