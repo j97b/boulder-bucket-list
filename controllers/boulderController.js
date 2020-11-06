@@ -31,7 +31,8 @@ const boulderController = (Boulder) => {
     const boulder = new Boulder(req.body);
     boulder.save((err) => {
       if (err) {
-        res.send(err);
+        res.status(400);
+        return res.json(err);
       } else {
         res.status(201);
         return res.json({ message: `${boulder.name} saved successfully` });
