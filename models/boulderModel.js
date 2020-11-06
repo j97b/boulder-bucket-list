@@ -32,10 +32,10 @@ const boulderModel = new Schema({
     type: Boolean,
     default: false,
   },
-  dateCompleted: {
+  completionDate: {
     type: Date,
-    required: (boulder) => {
-      return boulder.completed;
+    required: () => {
+      return this.completed;
     },
   },
   userId: {
