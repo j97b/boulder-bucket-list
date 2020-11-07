@@ -28,7 +28,9 @@ const noteController = (Note) => {
     return res.send(`Deleted ${req.notes.length} notes`);
   };
 
-  const getOne = () => {};
+  const getOne = (req, res) => {
+    res.json(req.boulders);
+  };
 
   const deleteOne = () => {};
 
