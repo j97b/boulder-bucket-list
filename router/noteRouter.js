@@ -16,8 +16,10 @@ const routes = (Note) => {
     .get(controller.getAllByBoulderId)
     .delete(controller.deleteAllByBoulderId);
 
+  router.use("/noteId/:noteId", middleware.findNoteById);
+
   router
-    .use("/noteId/:noteId", middleware.findNoteById)
+    .route("/noteId/:noteId")
     .delete(controller.deleteOne)
     .patch(controller.update);
 
