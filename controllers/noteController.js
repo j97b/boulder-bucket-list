@@ -28,7 +28,16 @@ const noteController = (Note) => {
     return res.send(`Deleted ${req.notes.length} notes`);
   };
 
-  const deleteOne = () => {};
+  const deleteOne = (req, res) => {
+    req.note.remove((err) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        res.status(200);
+        return res.send("Deleted note successfully");
+      }
+    });
+  };
 
   const update = () => {};
 
@@ -36,7 +45,6 @@ const noteController = (Note) => {
     post,
     getAllByBoulderId,
     deleteAllByBoulderId,
-    getOne,
     deleteOne,
     update,
   };
