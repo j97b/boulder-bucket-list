@@ -12,9 +12,21 @@ const noteController = (Note) => {
     });
   };
 
-  const getAllByBoulderId = () => {};
+  const getAllByBoulderId = (req, res) => {
+    res.json(req.notes);
+  };
 
-  const deleteAllByBoulderId = () => {};
+  const deleteAllByBoulderId = (req, res) => {
+    for (note of req.notes) {
+      note.remove((err) => {
+        if (err) {
+          return res.send(err);
+        }
+      });
+    }
+    res.status(200);
+    return res.send(`Deleted ${req.notes.length} notes`);
+  };
 
   const getOne = () => {};
 
