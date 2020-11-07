@@ -18,7 +18,6 @@ const routes = (Note) => {
 
   router
     .use("/noteId/:noteId", middleware.findNoteById)
-    .get(controller.getOne)
     .delete(controller.deleteOne)
     .patch(controller.update);
 
