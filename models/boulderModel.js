@@ -37,7 +37,7 @@ const boulderModel = new Schema({
     required: () => {
       return this.completed;
     },
-    max: new Date().getTime() / 1000,
+    max: new Date().getTime(),
   },
   userId: {
     type: String,
