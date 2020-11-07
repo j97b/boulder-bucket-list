@@ -39,7 +39,20 @@ const noteController = (Note) => {
     });
   };
 
-  const update = () => {};
+  const update = (req, res) => {
+    const { note } = req;
+    Object.entries(req.body).forEach((item) => {
+      note[item[0]] = item[1];
+    });
+    req.note.dave((err) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        res.status(200);
+        return res.json({ message: `${boulder.name} updated successfully` });
+      }
+    });
+  };
 
   return {
     post,
